@@ -1,0 +1,58 @@
+> canada <- life5060 %>% filter(country == "Canada")
+> head(canada)
+  country continent year   lifeExp      pop gdpPercap
+1  Canada  Americas 1952     68.75 14785584  11367.16
+2  Canada  Americas 1957 999999.00 17010154  12489.95
+3  Canada  Americas 1962     71.30 18985849  13462.49
+4  Canada  Americas 1967     72.13 20819767  16076.59
+> dim(canada)
+[1] 4 6
+> log(exp(abs(-3)))
+[1] 3
+> -3 %>% abs() %>% exp() %>% log()
+[1] 3
+> canada1 <- life5060[life5060$country == "Canada", ]
+> head(canada1)
+   country continent year   lifeExp      pop gdpPercap
+81  Canada  Americas 1952     68.75 14785584  11367.16
+82  Canada  Americas 1957 999999.00 17010154  12489.95
+83  Canada  Americas 1962     71.30 18985849  13462.49
+84  Canada  Americas 1967     72.13 20819767  16076.59
+> dim(canada1)
+[1] 4 6
+> canada %>% 
++     ggplot(aes(x = gdpPercap, y = lifeExp)) +
++     geom_line()
+> canada %>% filter(year == 1957)
+  country continent year lifeExp      pop gdpPercap
+1  Canada  Americas 1957  999999 17010154  12489.95
+> canada_fixed <- canada %>% mutate(
++     lifeExp = replace(lifeExp, year==1957, 69.96)  
++ )
+> 
+> canada_fixed
+  country continent year lifeExp      pop gdpPercap
+1  Canada  Americas 1952   68.75 14785584  11367.16
+2  Canada  Americas 1957   69.96 17010154  12489.95
+3  Canada  Americas 1962   71.30 18985849  13462.49
+4  Canada  Americas 1967   72.13 20819767  16076.59
+> canada_fixed1 = canada1
+> canada_fixed1$lifeExp[canada_fixed1$year==1957] = 69.96
+> canada_fixed1
+   country continent year lifeExp      pop gdpPercap
+81  Canada  Americas 1952   68.75 14785584  11367.16
+82  Canada  Americas 1957   69.96 17010154  12489.95
+83  Canada  Americas 1962   71.30 18985849  13462.49
+84  Canada  Americas 1967   72.13 20819767  16076.59
+> canada_fixed %>% ggplot(aes(x = lifeExp, y = gdpPercap)) +
++     geom_line()
+> plot(x = canada_fixed$year, y = canada_fixed$lifeExp, 
++      type = 'l', xlab = "lifeExp", ylab = "gdpPercap")
+> canada_fixed %>% 
++     ggplot(aes(x = lifeExp, y = gdpPercap, group=country)) + geom_line() +
++     geom_line(data = life5060 %>% 
++                   filter(country %in% c("United States", "Mexico")))
+> canada_fixed %>% 
++     ggplot(aes(x = lifeExp, y = gdpPercap, colour=country)) + geom_line() +
++     geom_line(data = life5060 %>% 
++                   filter(country %in% c("United States", "Mexico")))

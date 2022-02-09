@@ -1,3 +1,26 @@
+---
+title: "Homework 2"
+author: "Matt Schwab"
+date: "2/7/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Due: 2/9/2022 before 11:59pm. Submit in Canvas (file upload).
+
+1. Team Members: Matt Schwab           (https://github.com/mschwab7/practice1-mattschwab.git) 
+                Aidan Bergstein (https://github.com/aidanbergstein/practice1-Aidan-Bergstein.git) 
+
+How to Make working With Github Easier:
+     1)Link Github and RStudio so that you can commit your changes in RStudio to your repository.
+     2)Share your repository information with colleagues to allow you to collaborate and share code.
+     3)Fork colleagues' repositories so that you don't have to write all the code yourself.
+     4)Create README files and make comments to changes so that collaborators can understand why you are making changes.
+
+
 > canada <- life5060 %>% filter(country == "Canada")
 > head(canada)
   country continent year   lifeExp      pop gdpPercap
@@ -51,8 +74,8 @@
 > canada_fixed %>% 
 +     ggplot(aes(x = lifeExp, y = gdpPercap, group=country)) + geom_line() +
 +     geom_line(data = life5060 %>% 
-+                   filter(country %in% c("United States", "Mexico")))
++                   filter(country %in% c("United States", "Australia")))
 > canada_fixed %>% 
 +     ggplot(aes(x = lifeExp, y = gdpPercap, colour=country)) + geom_line() +
 +     geom_line(data = life5060 %>% 
-+                   filter(country %in% c("United States", "Mexico")))
++                   filter(country %in% c("United States", "Australia")))
